@@ -1,0 +1,10 @@
+# Working files (full-size originals, upload sheets) - not used by the site
+images/originals/
+
+# Local editor / tool settings
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

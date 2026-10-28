@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEM Group Website Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #f26a21;
+    --orange-soft: #fff1e8;
+    --ink: #111827;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg: #f7f7f8;
+    --card: #ffffff;
+    --dark: #0d0f14;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Poppins, system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  header.top { background: var(--dark); color: #fff; padding: 48px 0 40px; }
+  .eyebrow { color: var(--orange); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
+  h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 8px 0 12px; }
+  h1 span, h2 span { color: var(--orange); }
+  header.top p { color: #c9ccd3; max-width: 640px; margin: 0; }
+  h2 { font-size: clamp(22px, 3.5vw, 30px); margin: 56px 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+
+  /* Page order */
+  .order { display: grid; gap: 20px; }
+  .sec { background: var(--card); border: 1px solid var(--line); border-radius: 14px; display: grid; grid-template-columns: 1fr 1.3fr; overflow: hidden; }
+  .sec .info { padding: 20px 22px; }
+  .num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 700; font-size: 14px; margin-right: 8px; }
+  .sec h3 { display: flex; align-items: center; margin: 0 0 6px; font-size: 18px; }
+  .from { font-size: 12px; color: var(--orange); font-weight: 600; background: var(--orange-soft); padding: 2px 8px; border-radius: 99px; display: inline-block; margin-bottom: 8px; }
+  .from.new { color: #2563eb; background: #e8f0ff; }
+  .sec p { margin: 0; color: var(--muted); font-size: 14px; }
+  .sec ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+
+  /* Wireframe mock area */
+  .mock { background: #fafafa; border-left: 1px solid var(--line); padding: 16px; min-height: 190px; display: flex; flex-direction: column; gap: 8px; }
+  .mock.dark { background: #15181f; }
+  .bar { height: 8px; border-radius: 4px; background: #d6d9de; }
+  .dark .bar { background: #3a3f4a; }
+  .bar.o { background: var(--orange); }
+  .bar.h { height: 14px; }
+  .row { display: flex; gap: 8px; }
+  .row > * { flex: 1; }
+  .img { background: linear-gradient(135deg, #cfd3da, #e9ebef); border-radius: 6px; min-height: 40px; }
+  .dark .img { background: linear-gradient(135deg, #2b303b, #424856); }
+  .tile { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px; display: flex; flex-direction: column; gap: 5px; }
+  .dark .tile { background: #1d2129; border-color: #2c313b; }
+  .dot { width: 14px; height: 14px; border-radius: 4px; background: var(--orange-soft); border: 1px solid #ffd4bb; }
+  .btn { width: 70px; height: 16px; border-radius: 4px; background: var(--orange); }
+  .btn.ghost { background: transparent; border: 1px solid #6b7280; }
+  .nav { display: flex; justify-content: space-between; align-items: center; }
+  .nav .links { display: flex; gap: 6px; }
+  .nav .links i { width: 22px; height: 5px; border-radius: 3px; background: #4b5160; display: block; }
+  .logo { width: 54px; height: 12px; border-radius: 3px; background: #fff; }
+  .pin { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); position: absolute; }
+  .map { position: relative; background: #f1f2f4; border-radius: 6px; min-height: 70px; }
+  .center { align-self: center; }
+
+  /* Requirements */
+  .req { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .box h3 { margin: 0 0 10px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+  .tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+  .must { background: #fde8e8; color: #b42318; }
+  .nice { background: #eef2f6; color: #475467; }
+  .box label { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; padding: 6px 0; border-top: 1px dashed var(--line); cursor: pointer; }
+  .box label:first-of-type { border-top: 0; }
+  .box input { margin-top: 4px; accent-color: var(--orange); }
+  .box small { color: var(--muted); display: block; font-size: 12px; }
+  .progress { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 10px 0; font-size: 13px; color: var(--muted); }
+  .progress b { color: var(--ink); }
+  .track { height: 6px; background: var(--line); border-radius: 3px; margin-top: 6px; overflow: hidden; }
+  .track div { height: 100%; width: 0; background: var(--orange); transition: width .3s; }
+
+  .note { background: #fffaf5; border: 1px solid #ffd9c2; border-radius: 14px; padding: 18px 22px; }
+  .note h3 { margin: 0 0 8px; font-size: 16px; }
+  .note li { margin: 4px 0; font-size: 14px; }
+  footer { padding: 48px 0; color: var(--muted); font-size: 13px; }
+
+  @media (max-width: 720px) {
+    .sec { grid-template-columns: 1fr; }
+    .mock { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">SEM Group · Website plan</div>
+    <h1>Homepage <span>layout</span> &amp; what we need from you</h1>
+    <p>The 8 PDF pages put in the order the website will show them, with a sketch of each section, then a checklist of what your team needs to send. Built with plain HTML, CSS and JavaScript.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h2>Homepage <span>order</span></h2>
+  <p class="lead">I sorted the pages by the menu in your design (Home, About Us, Services, Projects, Industries, Infrastructure, Blog, Contact) and by the section numbers printed on the pages.</p>
+
+  <div class="order">
+
+    <!-- 1 Hero -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">1</span>Header + Hero</h3>
+        <span class="from">PDF page 2</span>
+        <p>Dark full-width banner showing a stall photo. Includes the menu, the "Exhibition Stall Design &amp; Fabrication Company in India" heading, two buttons and a strip of 4 numbers.</p>
+        <ul><li>Menu sticks to the top while scrolling</li><li>"Get a Free Quote" opens the enquiry form</li></ul>
+      </div>
+      <div class="mock dark">
+        <div class="nav"><div class="logo"></div><div class="links"><i></i><i></i><i></i><i></i><i></i></div><div class="btn" style="width:46px;height:12px"></div></div>
+        <div class="row" style="flex:1;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="bar" style="width:60%"></div>
+            <div class="bar h" style="background:#fff;width:85%"></div>
+            <div class="bar h o" style="width:90%"></div>
+            <div class="bar h" style="background:#fff;width:70%"></div>
+            <div class="row" style="max-width:150px;margin-top:4px"><div class="btn"></div><div class="btn ghost"></div></div>
+          </div>
+          <div class="img" style="min-height:90px"></div>
+        </div>
+        <div class="row"><div class="tile"><div class="bar o" style="width:40%"></div></div><div class="tile"><div class="bar o" style="width:40%"></div></div><div class="tile"><div class="bar o" style="width:40%"></div></div><div class="tile"><div class="bar o" style="width:40%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- 2 Stats / About -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">2</span>About + Company Statistics</h3>
+        <span class="from">PDF page 3 · "02 Trust Building"</span>
+        <p>Brand poster on the left and 4 stat cards on the right: 14+ years, 10,000+ projects, 4,500+ companies, 70+ team. The numbers count up when the section scrolls into view.</p>
+        <ul><li>Doubles as the "About Us" menu link</li></ul>
+      </div>
+      <div class="mock">
+        <div class="row" style="flex:1">
+          <div class="img" style="flex:.7;background:linear-gradient(160deg,#1b1e26,#3b404c)"></div>
+          <div style="flex:1.3;display:flex;flex-direction:column;gap:8px">
+            <div class="bar o" style="width:30%"></div><div class="bar h" style="width:75%"></div>
+            <div class="row"><div class="tile"><div class="dot"></div><div class="bar h" style="width:50%"></div></div><div class="tile"><div class="dot"></div><div class="bar h" style="width:60%"></div></div></div>
+            <div class="row"><div class="tile"><div class="dot"></div><div class="bar h" style="width:55%"></div></div><div class="tile"><div class="dot"></div><div class="bar h" style="width:40%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Services -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">3</span>Our Services</h3>
+        <span class="from">PDF page 4 · "03 Services"</span>
+        <p>8 service cards in 4 columns: Custom Stall Design, Stall Fabrication, Modular Stalls, 3D Design, Octanorm Setup, Corporate Events, Branding &amp; Printing, Turnkey Solutions.</p>
+        <ul><li>Each card can link to its own service page</li></ul>
+      </div>
+      <div class="mock">
+        <div class="bar h" style="width:45%"></div>
+        <div class="row"><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div></div>
+        <div class="row"><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div></div>
+        <div class="btn center" style="width:90px"></div>
+      </div>
+    </div>
+
+    <!-- 4 Projects -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">4</span>Recent Exhibition Projects</h3>
+        <span class="from">PDF page 5 · "04 Portfolio"</span>
+        <p>6 project cards in 3 columns. Each shows a photo, category, project name, event + year and city. Clicking a photo opens it full screen.</p>
+        <ul><li>"View All Projects" leads to a full gallery page with filters</li></ul>
+      </div>
+      <div class="mock">
+        <div class="bar h" style="width:60%"></div>
+        <div class="row"><div class="tile"><div class="img" style="min-height:48px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:48px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:48px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div></div></div>
+        <div class="row"><div class="tile"><div class="img" style="min-height:48px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:48px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:48px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div></div></div>
+      </div>
+    </div>
+
+    <!-- 5 Industries -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">5</span>Industries We Serve</h3>
+        <span class="from">PDF page 6</span>
+        <p>8 industry cards: Agriculture, Machinery, Sports, Textile, Paints, Interior, Automotive, Food &amp; Beverage. "View Projects" opens the gallery already filtered to that industry.</p>
+      </div>
+      <div class="mock">
+        <div class="bar h" style="width:50%"></div>
+        <div class="row"><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div></div>
+        <div class="row"><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div><div class="tile"><div class="img" style="min-height:44px"></div><div class="dot"></div><div class="bar"></div></div></div>
+      </div>
+    </div>
+
+    <!-- 6 Infrastructure -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">6</span>Manufacturing &amp; Fabrication Facilities</h3>
+        <span class="from">PDF page 7 · "Infrastructure"</span>
+        <p>Heading and 3 key points at the top, then a wide workshop photo and 3 smaller cards: Modern Machinery, Large Storage, On-site Installation.</p>
+      </div>
+      <div class="mock">
+        <div class="row"><div style="display:flex;flex-direction:column;gap:6px"><div class="bar h" style="width:80%"></div><div class="bar h o" style="width:60%"></div><div class="bar"></div></div><div style="display:flex;flex-direction:column;gap:6px"><div class="bar" style="width:60%"></div><div class="bar" style="width:55%"></div><div class="bar" style="width:65%"></div></div></div>
+        <div class="img" style="min-height:60px"></div>
+        <div class="row"><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div><div class="tile"><div class="img"></div><div class="bar"></div></div></div>
+      </div>
+    </div>
+
+    <!-- 7 Testimonials -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">7</span>Clients &amp; Testimonials</h3>
+        <span class="from">PDF page 8 · "Social Proof"</span>
+        <p>A row of client logos, then a sliding carousel of reviews, each with stall photo, stars, quote, name and company. A strip of 3 trust points sits underneath.</p>
+      </div>
+      <div class="mock">
+        <div class="bar h center" style="width:55%"></div>
+        <div class="row"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        <div class="row"><div class="tile"><div class="img" style="min-height:40px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div><div class="bar" style="width:70%"></div></div><div class="tile"><div class="img" style="min-height:40px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div><div class="bar" style="width:70%"></div></div><div class="tile"><div class="img" style="min-height:40px"></div><div class="bar o" style="width:40%"></div><div class="bar"></div><div class="bar" style="width:70%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- 8 Locations -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">8</span>Locations (India + International)</h3>
+        <span class="from">PDF page 1 · "Locations"</span>
+        <p>Stall photo and 5 city cards (Ludhiana HQ, Delhi, Chandigarh, Pune, Bengaluru) on the left. Map with pins and international offices (Germany, Dubai, Turkey) on the right.</p>
+        <ul><li>The PDF puts this first, but it reads best at the end, right before Contact</li></ul>
+      </div>
+      <div class="mock">
+        <div class="row" style="flex:1">
+          <div style="display:flex;flex-direction:column;gap:6px"><div class="img" style="flex:1"></div><div class="row"><div class="tile"><div class="img" style="min-height:22px"></div></div><div class="tile"><div class="img" style="min-height:22px"></div></div><div class="tile"><div class="img" style="min-height:22px"></div></div><div class="tile"><div class="img" style="min-height:22px"></div></div><div class="tile"><div class="img" style="min-height:22px"></div></div></div></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><div class="bar h" style="width:80%"></div><div class="map" style="flex:1"><span class="pin" style="left:20%;top:30%"></span><span class="pin" style="left:28%;top:50%"></span><span class="pin" style="left:24%;top:70%"></span><span class="pin" style="left:70%;top:25%"></span><span class="pin" style="left:62%;top:60%"></span></div><div class="row"><div class="tile"><div class="bar"></div></div><div class="tile"><div class="bar"></div></div><div class="tile"><div class="bar"></div></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 Contact + Footer (new) -->
+    <div class="sec">
+      <div class="info">
+        <h3><span class="num">9</span>Contact form + Footer</h3>
+        <span class="from new">Not in PDF · I'll design it to match</span>
+        <p>Enquiry form (name, company, phone, email, event, city, stall size, message), a WhatsApp button, then a dark footer with logo, quick links, addresses and social icons.</p>
+      </div>
+      <div class="mock dark">
+        <div class="row" style="flex:1">
+          <div style="display:flex;flex-direction:column;gap:6px"><div class="bar h" style="background:#fff;width:70%"></div><div class="bar" style="width:90%"></div><div class="bar" style="width:60%"></div></div>
+          <div class="tile" style="gap:6px"><div class="row"><div class="bar"></div><div class="bar"></div></div><div class="row"><div class="bar"></div><div class="bar"></div></div><div class="bar" style="height:22px"></div><div class="btn"></div></div>
+        </div>
+        <div class="row" style="border-top:1px solid #2c313b;padding-top:8px"><div class="logo" style="flex:0 0 54px"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Other <span>pages</span></h2>
+  <p class="lead">Each menu item can scroll down the homepage, or open its own page. My recommendation: one long homepage plus these separate pages.</p>
+  <div class="req">
+    <div class="box"><h3>Projects page</h3><p style="margin:0;font-size:14px;color:var(--muted)">Full gallery that filters by industry and service.</p></div>
+    <div class="box"><h3>Services page(s)</h3><p style="margin:0;font-size:14px;color:var(--muted)">One page per service, which helps you show up on Google.</p></div>
+    <div class="box"><h3>Contact page</h3><p style="margin:0;font-size:14px;color:var(--muted)">Form, all office addresses and Google Maps.</p></div>
+    <div class="box"><h3>Blog <span class="tag nice">optional</span></h3><p style="margin:0;font-size:14px;color:var(--muted)">On a plain HTML site, every new post means editing a file. Remove it unless you plan to post regularly.</p></div>
+  </div>
+
+  <h2>What we need <span>from you</span></h2>
+  <div class="progress"><b id="count">0</b> of <b id="total">0</b> ready <span style="float:right">Your ticks are saved in this browser only</span><div class="track"><div id="fill"></div></div></div>
+
+  <div class="req" id="reqs">
+    <div class="box">
+      <h3>Brand <span class="tag must">must</span></h3>
+      <label><input type="checkbox">Logo files (SVG or high-res PNG)<small>One for dark backgrounds, one for white backgrounds</small></label>
+      <label><input type="checkbox">Confirm brand colours<small>From the PDF: orange about #F26A21, near-black, white</small></label>
+      <label><input type="checkbox">Tagline: "Creative Spaces, Stronger Brands" or something else?</label>
+      <label><input type="checkbox">Favicon / small icon (I can make one from the logo)</label>
+    </div>
+
+    <div class="box">
+      <h3>Company info <span class="tag must">must</span></h3>
+      <label><input type="checkbox">Short "About us" text (100–200 words)</label>
+      <label><input type="checkbox">Confirm the real numbers<small>14+ years, 10,000+ projects, 4,500+ clients, 70+ team</small></label>
+      <label><input type="checkbox">Founding year and founder/director names (if you want them shown)</label>
+      <label><input type="checkbox">GST / company registration number (optional, for the footer)</label>
+    </div>
+
+    <div class="box">
+      <h3>Contact details <span class="tag must">must</span></h3>
+      <label><input type="checkbox">Phone and WhatsApp number</label>
+      <label><input type="checkbox">Business email</label>
+      <label><input type="checkbox">Full address for each office<small>Ludhiana (HQ), Delhi, Chandigarh, Pune, Bengaluru</small></label>
+      <label><input type="checkbox">International offices: real offices or partner locations?<small>Germany, Dubai, Turkey</small></label>
+      <label><input type="checkbox">Google Maps link for each office</label>
+      <label><input type="checkbox">Working hours</label>
+      <label><input type="checkbox">Social media links (Instagram, LinkedIn, Facebook, YouTube)</label>
+    </div>
+
+    <div class="box">
+      <h3>Services <span class="tag must">must</span></h3>
+      <label><input type="checkbox">Confirm the 8 services in the PDF (add or remove any)</label>
+      <label><input type="checkbox">2–3 lines of text for each service</label>
+      <label><input type="checkbox">1 real photo for each service</label>
+    </div>
+
+    <div class="box">
+      <h3>Projects <span class="tag must">must</span></h3>
+      <label><input type="checkbox">Photos of 6+ real projects (more for the gallery page)<small>Large, clear JPGs: the more the better</small></label>
+      <label><input type="checkbox">For each project: name, event, year, city, industry, stall size</label>
+      <label><input type="checkbox">Confirm you have permission to show each client's brand</label>
+    </div>
+
+    <div class="box">
+      <h3>Industries &amp; Infrastructure</h3>
+      <label><input type="checkbox">Confirm the 8 industries (add or remove any)</label>
+      <label><input type="checkbox">Real photos of your factory or workshop, machines and storage</label>
+      <label><input type="checkbox">Workshop size (sq ft) and machinery list (optional, but builds trust)</label>
+    </div>
+
+    <div class="box">
+      <h3>Clients &amp; Reviews</h3>
+      <label><input type="checkbox">Logos of clients you're allowed to show</label>
+      <label><input type="checkbox">3–6 real testimonials<small>Quote, name, job title, company, photo if they're OK with it</small></label>
+      <label><input type="checkbox">Google review link (if you have a Google Business profile)</label>
+    </div>
+
+    <div class="box">
+      <h3>Technical <span class="tag must">must</span></h3>
+      <label><input type="checkbox">Where should enquiries go?<small>Email, WhatsApp, Google Sheet, or a mix</small></label>
+      <label><input type="checkbox">Domain: is the site going on semgroup.in?</label>
+      <label><input type="checkbox">Hosting details<small>semgroup.in currently runs WordPress. Should this site replace it?</small></label>
+      <label><input type="checkbox">Google Analytics / Search Console access (if you have it)</label>
+    </div>
+
+    <div class="box">
+      <h3>Decisions</h3>
+      <label><input type="checkbox">Is the page order above OK?</label>
+      <label><input type="checkbox">One long homepage plus separate pages, or homepage only?</label>
+      <label><input type="checkbox">Keep or drop the Blog?</label>
+      <label><input type="checkbox">Any websites you like (for animations or overall feel)?</label>
+      <label><input type="checkbox">Main cities and keywords you want to show up for on Google</label>
+    </div>
+  </div>
+
+  <h2>Things I <span>noticed</span> in the PDF</h2>
+  <div class="note">
+    <ul>
+      <li><b>Some photos look AI-generated</b> (stalls, workshop, people). Real photos of your own work will look more trustworthy, and clients can tell the difference.</li>
+      <li><b>Client names and reviews look like sample content</b> (Agrimax, Technovolt, Novex, Amit Sharma…). We need real ones, or that section stays hidden until we have them.</li>
+      <li><b>No mobile design</b> in the PDF. I'll make every section stack properly on phones.</li>
+      <li><b>No footer or contact section</b> in the PDF. I'll design them to match the same style.</li>
+      <li>Some small text in the PDF is hard to read, so some wording on the site may differ slightly from the PDF.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="wrap">SEM Group website plan · draft for review</footer>
+
+<script>
+  const boxes = [...document.querySelectorAll('#reqs input[type=checkbox]')];
+  const KEY = 'sem-plan-checks';
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+  boxes.forEach((b, i) => { b.checked = !!saved[i]; b.addEventListener('change', update); });
+  document.getElementById('total').textContent = boxes.length;
+  function update() {
+    const state = boxes.map(b => b.checked);
+    const done = state.filter(Boolean).length;
+    document.getElementById('count').textContent = done;
+    document.getElementById('fill').style.width = (done / boxes.length * 100) + '%';
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  update();
+</script>
+</body>
+</html>
