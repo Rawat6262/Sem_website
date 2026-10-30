@@ -143,7 +143,7 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 document.querySelectorAll('[data-lightbox]').forEach(btn => {
   btn.addEventListener('click', () => {
-    const img = btn.querySelector('img');
+    const img = btn.querySelector('.poster-img') || btn.querySelector('img');
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightbox.hidden = false;
@@ -165,14 +165,14 @@ const WEB3FORMS_ACCESS_KEY = 'c5513605-2964-49fb-a2d3-d02ef17c5df8';
 
 const form = document.getElementById('quoteForm');
 const statusEl = document.getElementById('formStatus');
-const submitBtn = form.querySelector('button[type="submit"]');
+const submitBtn = form && form.querySelector('button[type="submit"]');
 
 function setStatus(message, type) {
   statusEl.textContent = message;
   statusEl.className = 'form-status ' + type;
 }
 
-form.addEventListener('submit', async e => {
+if (form) form.addEventListener('submit', async e => {
   e.preventDefault();
   let valid = true;
   form.querySelectorAll('[required]').forEach(field => {
@@ -234,9 +234,31 @@ form.addEventListener('submit', async e => {
   }
 });
 
-form.querySelectorAll('[required]').forEach(field => {
+if (form) form.querySelectorAll('[required]').forEach(field => {
   field.addEventListener('input', () => field.classList.remove('invalid'));
 });
+
+/* ---------- Projects page filter ---------- */
+(function initProjectFilter() {
+  const buttons = document.querySelectorAll('.filter-btn');
+  if (!buttons.length) return;
+  const items = document.querySelectorAll('#projectGrid [data-cat], #projectDetails [data-cat]');
+
+  function apply(cat) {
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+    items.forEach(el => {
+      const show = cat === 'all' || el.dataset.cat === cat;
+      el.classList.toggle('is-hidden', !show);
+      if (show) el.classList.add('visible');
+    });
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.filter)));
+
+  // Links like projects.html?cat=agriculture open with that filter applied
+  const fromUrl = new URLSearchParams(location.search).get('cat');
+  if (fromUrl && [...buttons].some(b => b.dataset.filter === fromUrl)) apply(fromUrl);
+})();
 
 /* ---------- Footer year ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();

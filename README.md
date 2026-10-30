@@ -7,9 +7,10 @@ Built with plain HTML, CSS and JavaScript (no frameworks or build step).
 
 ```
 index.html          Homepage (all sections)
+projects.html       Exhibition projects page (filterable grid + details for each event)
 css/style.css       Styles and responsive layout
-js/main.js          Menu, scroll effects, counters, testimonial slider, lightbox, quote form
-images/             Site images (WebP)
+js/main.js          Menu, scroll effects, counters, testimonial slider, lightbox, project filter, quote form
+images/             Site images (WebP); event posters in images/projects/
 docs/               Website plan and image prompts
 ```
 
