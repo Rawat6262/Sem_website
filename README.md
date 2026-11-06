@@ -6,8 +6,14 @@ Built with plain HTML, CSS and JavaScript (no frameworks or build step).
 ## Structure
 
 ```
-index.html          Homepage (all sections)
+index.html          Homepage (overview of every section)
+about.html          Company story, numbers and how we work
+services.html       Each service in detail, stall layout picker and process
 projects.html       Exhibition projects page (filterable grid + details for each event)
+industries.html     Industries served and what each one needs
+infrastructure.html Workshop, machinery, storage and installation
+locations.html      Office directory and international reach
+contact.html        Quote form, next steps and FAQ
 css/style.css       Styles and responsive layout
 js/main.js          Menu, scroll effects, counters, testimonial slider, lightbox, project filter, quote form
 images/             Site images (WebP); event posters in images/projects/
@@ -32,5 +38,7 @@ Enquiries are emailed through [Web3Forms](https://web3forms.com). The access key
 ## Still to replace
 
 - Real phone, email, addresses, WhatsApp number and social links
+- Company story and page copy, to review against what SEM Group actually offers
+- Each regional office's address and phone number
 - Client logos and testimonials
 - Project names, events and photos of real completed work
