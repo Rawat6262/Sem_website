@@ -4,14 +4,14 @@
    need a link in the Locations dropdown in each page's navbar.
    ========================================================= */
 
-// TODO: real WhatsApp number in international format, no + or spaces
-const WHATSAPP_NUMBER = '910000000000';
+const WHATSAPP_NUMBER = '916280943214';
 
 // map: position on the simplified map, in percent. coords: real latitude and longitude, used by the office finder.
 // venues: add image: 'images/venues/name.webp' to show a photo instead of the illustration.
 const LOCATIONS = {
   ludhiana: {
     name: 'Ludhiana', region: 'Ludhiana & Punjab', role: 'Head office', group: 'india', map: [54, 33], coords: [30.90, 75.85],
+    address: '10-A, Link Road, Industrial Estate, near Partap Chowk, Dholewal Chowk, Ludhiana, Punjab 141001', phone: ['+916280943214', '+91 62809 43214'],
     local: 'Ludhiana is our headquarters and the base for our work across India and overseas.',
     photos: ['about-sem-stall.webp', 'service-turnkey.webp'],
     venues: [
@@ -172,6 +172,14 @@ function showLocation(id, addToHistory) {
   document.getElementById('locIntroPhoto').src = 'images/' + loc.photos[0];
   document.getElementById('locWhyPhoto').src = 'images/' + loc.photos[1];
 
+  // Shown only for locations with an address and phone in LOCATIONS
+  const addressEl = document.getElementById('locAddress');
+  addressEl.hidden = !loc.address;
+  addressEl.innerHTML = loc.address
+    ? `<svg class="icon"><use href="#i-pin"/></svg><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.address)}" target="_blank" rel="noopener">${escapeHtml(loc.address)}</a><br>
+       <svg class="icon"><use href="#i-phone"/></svg><a href="tel:${loc.phone[0]}">${loc.phone[1]}</a>`
+    : '';
+
   page.venues.innerHTML = loc.venues.map(v => `
     <article class="venue-card">
       ${v.image ? `<img src="${v.image}" alt="${escapeHtml(v.name)}" loading="lazy">` : '<div class="venue-art" aria-hidden="true"><svg class="icon"><use href="#i-building"/></svg></div>'}
@@ -190,7 +198,12 @@ function showLocation(id, addToHistory) {
   document.querySelectorAll('.loc-switch a').forEach(a => {
     const on = a.dataset.loc === id;
     a.classList.toggle('active', on);
-    if (on) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); } else { a.removeAttribute('aria-current'); }
+    if (on) {
+      a.setAttribute('aria-current', 'page');
+      a.parentElement.scrollLeft = a.offsetLeft - a.parentElement.offsetLeft - (a.parentElement.clientWidth - a.offsetWidth) / 2;
+    } else {
+      a.removeAttribute('aria-current');
+    }
   });
   page.map.querySelectorAll('.net-pin').forEach(p => p.setAttribute('aria-pressed', p.dataset.loc === id));
   page.map.querySelectorAll('.net-line').forEach(l => l.classList.toggle('active', l.dataset.loc === id));

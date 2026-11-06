@@ -684,6 +684,9 @@ button { font: inherit; cursor: pointer; }
 .loc-intro img, .loc-why img { width: 100%; object-fit: cover; border-radius: 14px; }
 .loc-intro img { aspect-ratio: 2 / 1; height: 100%; min-height: 260px; }
 .loc-intro p { margin-top: 12px; font-size: 15.5px; max-width: 68ch; }
+.loc-intro .loc-address { margin: 0 0 14px; font-weight: 500; color: var(--ink); line-height: 1.9; }
+.loc-address .icon { margin-right: 8px; color: var(--orange); vertical-align: -3px; }
+.loc-address a:hover { color: var(--orange); }
 .loc-why p { margin-top: 12px; font-size: 15.5px; max-width: 56ch; }
 .service-tiles { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 12px; }
 .service-tile {

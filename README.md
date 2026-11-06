@@ -38,7 +38,7 @@ Enquiries are emailed through [Web3Forms](https://web3forms.com). The access key
 
 ## Still to replace
 
-- Real phone, email, addresses, WhatsApp number and social links
+- Confirm the email address and working hours
 - Company story and page copy, to review against what SEM Group actually offers
 - Each regional office's address and phone number
 - Client logos and testimonials
