@@ -260,5 +260,25 @@ if (form) form.querySelectorAll('[required]').forEach(field => {
   if (fromUrl && [...buttons].some(b => b.dataset.filter === fromUrl)) apply(fromUrl);
 })();
 
+/* ---------- Night mode ---------- */
+// The starting theme is set by the inline script in <head>, before first paint.
+const themeToggle = document.getElementById('themeToggle');
+
+function setTheme(theme) {
+  const dark = theme === 'dark';
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute('aria-label', dark ? 'Switch to day mode' : 'Switch to night mode');
+  themeToggle.querySelector('use').setAttribute('href', dark ? '#i-sun' : '#i-moon');
+}
+setTheme(document.documentElement.dataset.theme);
+
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.classList.add('theme-fade');
+  setTimeout(() => document.documentElement.classList.remove('theme-fade'), 350);
+  setTheme(next);
+  try { localStorage.setItem('theme', next); } catch (err) { /* storage blocked: theme lasts this page only */ }
+});
+
 /* ---------- Footer year ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();

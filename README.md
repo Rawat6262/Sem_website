@@ -31,7 +31,6 @@ Enquiries are emailed through [Web3Forms](https://web3forms.com). The access key
 
 ## Still to replace
 
-- Logo (currently text)
 - Real phone, email, addresses, WhatsApp number and social links
 - Client logos and testimonials
 - Project names, events and photos of real completed work
