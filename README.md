@@ -12,10 +12,11 @@ services.html       Each service in detail, stall layout picker and process
 projects.html       Exhibition projects page (filterable grid + details for each event)
 industries.html     Industries served and what each one needs
 infrastructure.html Workshop, machinery, storage and installation
-locations.html      Office directory and international reach
+locations.html      One page for all locations; the content comes from js/locations.js
 contact.html        Quote form, next steps and FAQ
 css/style.css       Styles and responsive layout
 js/main.js          Menu, scroll effects, counters, testimonial slider, lightbox, project filter, quote form
+js/locations.js     Location data (venues, projects, map, WhatsApp number) and page logic
 images/             Site images (WebP); event posters in images/projects/
 docs/               Website plan and image prompts
 ```
